@@ -1,5 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>charcol's blog</title><link href="char.id.au/" rel="alternate"></link><link href="char.id.au/feeds/atom.xml" rel="self"></link><id>char.id.au/</id><updated>2017-03-19T00:00:00+10:00</updated><entry><title>Bsides Canberra 2017</title><link href="char.id.au/bsides2017.html" rel="alternate"></link><published>2017-03-19T00:00:00+10:00</published><author><name>charcol</name></author><id>tag:,2017-03-16:char.id.au/bsides2017.html</id><summary type="html">&lt;div class="line-block"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>charcol's blog</title><link href="char.id.au/" rel="alternate"></link><link href="char.id.au/feeds/atom.xml" rel="self"></link><id>char.id.au/</id><updated>2017-06-30T00:00:00+10:00</updated><entry><title>Do You Want To Git Good?</title><link href="char.id.au/git-talks.html" rel="alternate"></link><published>2017-06-30T00:00:00+10:00</published><author><name>charcol</name></author><id>tag:,2017-06-30:char.id.au/git-talks.html</id><summary type="html">&lt;p&gt;A couple of months ago, the local Ruby meetup group, &lt;a class="reference external" href="https://www.meetup.com/BrisRuby/"&gt;BrisRuby&lt;/a&gt;, put out a call to see if anyone could do an introductory git talk.  It ended up turning into two talks over two months. &amp;quot;Gitting Into Version Control: an introduction to git&amp;quot; and &amp;quot;Gitting Out Of Trouble: what to do when things go wrong&amp;quot;.&lt;/p&gt;
+&lt;p&gt;I've written up the content in this blog post, and the slides are linked below.&lt;/p&gt;
+&lt;div class="section" id="gitting-into-version-control"&gt;
+&lt;h2&gt;Gitting Into Version Control&lt;/h2&gt;
+&lt;p&gt;Why use version control?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;It keeps a change history of every file&lt;/li&gt;
+&lt;li&gt;Branches let you, or several people, work on things concurrently&lt;/li&gt;
+&lt;li&gt;Auditing - where features were introduced, who worked on what&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Why git?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Used by popular code hosting services like Gitlab, Github and Bitbucket&lt;/li&gt;
+&lt;li&gt;Creates a full copy of the whole repository (unlike SVN)&lt;/li&gt;
+&lt;li&gt;Open source&lt;/li&gt;
+&lt;li&gt;Powerful features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Initialise a repository:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git init --bare &amp;lt;directory&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Initialise a shared repository with --bare so that it doesn't create a working tree.&lt;/p&gt;
+&lt;p&gt;Clone an existing repository:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git clone &amp;lt;URL&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Edit the config:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git config --global user.name &amp;quot;Charelle Collett&amp;quot;
+$ git config --global user.email &amp;quot;charcol&amp;#64;example.com&amp;quot;
+$ git config --global --edit
+&lt;/pre&gt;
+&lt;p&gt;Remove &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--global&lt;/span&gt;&lt;/tt&gt; to change settings for a single project.&lt;/p&gt;
+&lt;p&gt;See what changes will be applied:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git status
+&lt;/pre&gt;
+&lt;p&gt;Add files to commit:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git add &amp;lt;filename&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Or you can use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-a&lt;/span&gt;&lt;/tt&gt; while committing&lt;/p&gt;
+&lt;p&gt;Commit your changes:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git commit -m &amp;quot;message&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;See the history:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git log
+&lt;/pre&gt;
+&lt;p&gt;Move to a different branch:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout &amp;lt;name-of-branch&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Create a new branch and move to it:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout -b &amp;lt;name-of-branch&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Which is the same as:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git branch &amp;lt;name-of-branch&amp;gt;
+$ git checkout &amp;lt;name-of-branch&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Show connections to other repositories:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git remote -v
+&lt;/pre&gt;
+&lt;p&gt;Pull from a certain remote:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git pull &amp;lt;remote&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Push to a specific branch:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git push &amp;lt;remote&amp;gt; &amp;lt;branch&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Add a remote:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git remote add &amp;lt;name&amp;gt; &amp;lt;url&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Only push to a bare repository!&lt;/p&gt;
+&lt;p&gt;Remove a remote:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git remote rm &amp;lt;name&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Add branch config to &lt;tt class="docutils literal"&gt;.git/config&lt;/tt&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git config --edit
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+[branch &amp;quot;new-feature&amp;quot;]
+    remote = origin
+    merge = refs/heads/new-feature
+&lt;/pre&gt;
+&lt;div class="section" id="more-info"&gt;
+&lt;h3&gt;More info:&lt;/h3&gt;
+&lt;p&gt;Git documentation:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://git-scm.com/book/en/v1/Getting-Started"&gt;https://git-scm.com/book/en/v1/Getting-Started&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Atlassian's git tutorial:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.atlassian.com/git/tutorials"&gt;https://www.atlassian.com/git/tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Github / Code school interactive tutorial:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://try.github.io/levels/1/challenges/1"&gt;https://try.github.io/levels/1/challenges/1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Codecademy interactive tutorial:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.codecademy.com/learn/learn-git"&gt;https://www.codecademy.com/learn/learn-git&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gitting-out-of-trouble"&gt;
+&lt;h2&gt;Gitting Out Of Trouble&lt;/h2&gt;
+&lt;p&gt;There are many different ways to do the things mentioned here.&lt;/p&gt;
+&lt;p&gt;Rename a branch:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git branch -m &amp;lt;oldname&amp;gt; &amp;lt;newname&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Reverting uncommitted changes:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout &amp;lt;file&amp;gt;
+$ git reset --hard
+&lt;/pre&gt;
+&lt;p&gt;Delete a branch:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout master
+$ git branch -D &amp;lt;branch&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;If you have pushed:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git push --delete &amp;lt;branch&amp;gt;
+$ git fetch --prune
+$ git branch -D &amp;lt;branch&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Changing a commit message for the most recent commit:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git commit --amend
+&lt;/pre&gt;
+&lt;p&gt;If you have pushed:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+git push --force-with-lease
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;CAUTION:&lt;/em&gt; &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--force&lt;/span&gt;&lt;/tt&gt; rewrites history&lt;/p&gt;
+&lt;p&gt;To change an older commit, you must rebase.&lt;/p&gt;
+&lt;p&gt;To delete a commit:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git rebase -i &amp;lt;previous-commit&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Then delete the line you want to remove.&lt;/p&gt;
+&lt;p&gt;If you have pushed:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git revert &amp;lt;commit&amp;gt;
+$ git push
+&lt;/pre&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;revert&lt;/tt&gt; creates a new commit that undoes the changes&lt;/p&gt;
+&lt;p&gt;If you have committed to the wrong branch:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git branch &amp;lt;new-branch&amp;gt;
+$ git reset --hard &amp;lt;commit&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;If you have pushed:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git revert &amp;lt;commit&amp;gt;
+$ git push
+$ git checkout &amp;lt;correct-branch&amp;gt;
+$ git cherry-pick &amp;lt;commit&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;To squash commits / rewrite history / edit old commits / reword messages:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git rebase -i &amp;lt;commit&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;or for the four most recent commits:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git rebase -i HEAD~4
+&lt;/pre&gt;
+&lt;p&gt;Commits are shown oldest to newest.  &lt;tt class="docutils literal"&gt;pick&lt;/tt&gt; the oldest, and &lt;tt class="docutils literal"&gt;squash&lt;/tt&gt; the newer commits.  You can also reorder commits.&lt;/p&gt;
+&lt;p&gt;If you have pushed:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git push --force-with-lease
+&lt;/pre&gt;
+&lt;p&gt;To get the latest changes and rebase onto those changes:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout master
+$ git pull
+$ git checkout &amp;lt;branch&amp;gt;
+$ git rebase master
+&lt;/pre&gt;
+&lt;p&gt;If you have issues, you may want to &lt;tt class="docutils literal"&gt;rebase &lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/tt&gt; (interactive)&lt;/p&gt;
+&lt;p&gt;If there are conflicts and you need to manually merge, search for &amp;gt;&amp;gt;&amp;gt;&amp;gt; to find the conflicts.&lt;/p&gt;
+&lt;p&gt;Add the fixed files (&lt;tt class="docutils literal"&gt;git add &amp;lt;file&amp;gt;&lt;/tt&gt;) then &lt;tt class="docutils literal"&gt;git rebase &lt;span class="pre"&gt;--continue&lt;/span&gt;&lt;/tt&gt;.  It's also possible to &lt;tt class="docutils literal"&gt;git rebase &lt;span class="pre"&gt;--abort&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Reference log shows when the HEAD has been updated in the local repository:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git reflog [--all]
+&lt;/pre&gt;
+&lt;p&gt;Stash changes:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git stash
+&lt;/pre&gt;
+&lt;p&gt;Files need to be tracked before stashing.  (&lt;tt class="docutils literal"&gt;git add .&lt;/tt&gt; ) Or you can &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--include-untracked&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Retrieve changes and remove them from the stash:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git stash pop
+&lt;/pre&gt;
+&lt;p&gt;Remove from the stash:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git stash drop
+&lt;/pre&gt;
+&lt;p&gt;Retrieve changes but keep them in the stash:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git stash apply
+&lt;/pre&gt;
+&lt;div class="section" id="small-glossary"&gt;
+&lt;h3&gt;Small glossary&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;origin:&lt;/em&gt; default name for the repository you cloned from&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;working tree:&lt;/em&gt; where you edit the checked out branch (can have multiple)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;clean working tree:&lt;/em&gt; current files you are editing match HEAD&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;bare repository:&lt;/em&gt; repository without a working tree. Pushing to a non bare repo can cause conflicts&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;staging:&lt;/em&gt; changes to be committed&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;HEAD:&lt;/em&gt; is the commit at the tip of the current branch&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;revert:&lt;/em&gt; creates a new commit to undo changes&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;reset:&lt;/em&gt; changes which commit HEAD is pointing to&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="other-interesting-things"&gt;
+&lt;h3&gt;Other interesting things&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;patch:&lt;/em&gt; Export changes as a patch that can be applied later&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;.gitignore:&lt;/em&gt; List of files that git should ignore&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;diff:&lt;/em&gt; See differences between commits&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;blame:&lt;/em&gt; See who was responsible for changes&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="more-lessons-on-presenting"&gt;
+&lt;h3&gt;More lessons on presenting&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Even if you've increased the text size, someone will want it larger.&lt;/li&gt;
+&lt;li&gt;Even if HDMI works with your laptop on several different projectors, it won't always work on the one you're using &amp;gt;&amp;lt;&lt;/li&gt;
+&lt;li&gt;Even if a mini-DP adapter doesn't work on other projectors, it may work on the one you're using&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The discussion afterwards is always my favourite part, because it's a chance to learn from other people.  From this I found out that a colleague never uses &lt;tt class="docutils literal"&gt;git pull&lt;/tt&gt; but instead &lt;tt class="docutils literal"&gt;fetch&lt;/tt&gt; then &lt;tt class="docutils literal"&gt;rebase&lt;/tt&gt; (since pull is a fetch then merge, this avoids the merge). You can find more detail in this excellent blog post: &lt;a class="reference external" href="https://longair.net/blog/2009/04/16/git-fetch-and-merge/"&gt;git: fetch and merge, don’t pull | Mark's Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hopefully this is useful!  Someone at the Ruby meetup suggested a potential future talk about different git workflows and branching models, but I don't think I have enough experience in different teams.  Perhaps someone else would like to research and give this talk?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="slides"&gt;
+&lt;h2&gt;Slides&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://redhat.slides.com/charellecollett/deck-1?token=E29yEW2p"&gt;Gitting into Version Control by Charelle Collett&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://redhat.slides.com/charellecollett/deck-1-2?token=ALW0QSBk"&gt;Gitting Out Of Trouble! by Charelle Collett&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Bsides Canberra 2017</title><link href="char.id.au/bsides2017.html" rel="alternate"></link><published>2017-03-19T00:00:00+10:00</published><author><name>charcol</name></author><id>tag:,2017-03-16:char.id.au/bsides2017.html</id><summary type="html">&lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;div class="line"&gt;✔ Laptop&lt;/div&gt;
 &lt;div class="line"&gt;✔ Conference shirts&lt;/div&gt;

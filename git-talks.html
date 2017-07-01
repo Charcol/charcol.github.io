@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="./git-talks.html" />
+
+    <title>  charcol's blog &mdash; Do You Want To Git Good?
+</title>
+
+
+
+      <link type="application/atom+xml" rel="alternate" href="/feeds/atom.xml"  title="charcol's blog Atom Feed">
+
+    <link rel="stylesheet" href="./theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="charcol">
+    <meta name="description" content="A summary of my two git talks">
+  <meta name="tags" contents="">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href="."><img src=/images/blog-icon.png width="200" height = "200"></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href=".">charcol's blog</a>
+      </h1>
+      <h3 class="header-text">Usually coherent ramblings</h3>
+      <ul class="header-menu list-inline">
+              <li class="muted">|</li>
+            <li><a class="nodec" href="./pages/about.html">About</a></li>
+              <li class="muted">|</li>
+          <li><a class="nodec icon-mail-alt" href="mailto:charcol at blackhats.net.au"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/Charcol"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/Charcol0x89"></a></li>
+          <li><a class="nodec icon-rss" href="/feeds/atom.xml"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/git-talks.html" title="Permalink to Do You Want To Git Good?">Do You Want To Git Good?</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/git-talks.html" title="2017-06-30T00:00:00+10:00">Fri 30 June 2017</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="./category/git.html">git</a>
+      </li>
+    </ul>
+    <div class="post-content">
+      <p>A couple of months ago, the local Ruby meetup group, <a class="reference external" href="https://www.meetup.com/BrisRuby/">BrisRuby</a>, put out a call to see if anyone could do an introductory git talk.  It ended up turning into two talks over two months. &quot;Gitting Into Version Control: an introduction to git&quot; and &quot;Gitting Out Of Trouble: what to do when things go wrong&quot;.</p>
+<p>I've written up the content in this blog post, and the slides are linked below.</p>
+<div class="section" id="gitting-into-version-control">
+<h2>Gitting Into Version Control</h2>
+<p>Why use version control?</p>
+<ul class="simple">
+<li>It keeps a change history of every file</li>
+<li>Branches let you, or several people, work on things concurrently</li>
+<li>Auditing - where features were introduced, who worked on what</li>
+</ul>
+<p>Why git?</p>
+<ul class="simple">
+<li>Used by popular code hosting services like Gitlab, Github and Bitbucket</li>
+<li>Creates a full copy of the whole repository (unlike SVN)</li>
+<li>Open source</li>
+<li>Powerful features</li>
+</ul>
+<p>Initialise a repository:</p>
+<pre class="literal-block">
+$ git init --bare &lt;directory&gt;
+</pre>
+<p>Initialise a shared repository with --bare so that it doesn't create a working tree.</p>
+<p>Clone an existing repository:</p>
+<pre class="literal-block">
+$ git clone &lt;URL&gt;
+</pre>
+<p>Edit the config:</p>
+<pre class="literal-block">
+$ git config --global user.name &quot;Charelle Collett&quot;
+$ git config --global user.email &quot;charcol&#64;example.com&quot;
+$ git config --global --edit
+</pre>
+<p>Remove <tt class="docutils literal"><span class="pre">--global</span></tt> to change settings for a single project.</p>
+<p>See what changes will be applied:</p>
+<pre class="literal-block">
+$ git status
+</pre>
+<p>Add files to commit:</p>
+<pre class="literal-block">
+$ git add &lt;filename&gt;
+</pre>
+<p>Or you can use <tt class="docutils literal"><span class="pre">-a</span></tt> while committing</p>
+<p>Commit your changes:</p>
+<pre class="literal-block">
+$ git commit -m &quot;message&quot;
+</pre>
+<p>See the history:</p>
+<pre class="literal-block">
+$ git log
+</pre>
+<p>Move to a different branch:</p>
+<pre class="literal-block">
+$ git checkout &lt;name-of-branch&gt;
+</pre>
+<p>Create a new branch and move to it:</p>
+<pre class="literal-block">
+$ git checkout -b &lt;name-of-branch&gt;
+</pre>
+<p>Which is the same as:</p>
+<pre class="literal-block">
+$ git branch &lt;name-of-branch&gt;
+$ git checkout &lt;name-of-branch&gt;
+</pre>
+<p>Show connections to other repositories:</p>
+<pre class="literal-block">
+$ git remote -v
+</pre>
+<p>Pull from a certain remote:</p>
+<pre class="literal-block">
+$ git pull &lt;remote&gt;
+</pre>
+<p>Push to a specific branch:</p>
+<pre class="literal-block">
+$ git push &lt;remote&gt; &lt;branch&gt;
+</pre>
+<p>Add a remote:</p>
+<pre class="literal-block">
+$ git remote add &lt;name&gt; &lt;url&gt;
+</pre>
+<p>Only push to a bare repository!</p>
+<p>Remove a remote:</p>
+<pre class="literal-block">
+$ git remote rm &lt;name&gt;
+</pre>
+<p>Add branch config to <tt class="docutils literal">.git/config</tt>:</p>
+<pre class="literal-block">
+$ git config --edit
+</pre>
+<pre class="literal-block">
+[branch &quot;new-feature&quot;]
+    remote = origin
+    merge = refs/heads/new-feature
+</pre>
+<div class="section" id="more-info">
+<h3>More info:</h3>
+<p>Git documentation:</p>
+<p><a class="reference external" href="https://git-scm.com/book/en/v1/Getting-Started">https://git-scm.com/book/en/v1/Getting-Started</a></p>
+<p>Atlassian's git tutorial:</p>
+<p><a class="reference external" href="https://www.atlassian.com/git/tutorials">https://www.atlassian.com/git/tutorials</a></p>
+<p>Github / Code school interactive tutorial:</p>
+<p><a class="reference external" href="https://try.github.io/levels/1/challenges/1">https://try.github.io/levels/1/challenges/1</a></p>
+<p>Codecademy interactive tutorial:</p>
+<p><a class="reference external" href="https://www.codecademy.com/learn/learn-git">https://www.codecademy.com/learn/learn-git</a></p>
+</div>
+</div>
+<div class="section" id="gitting-out-of-trouble">
+<h2>Gitting Out Of Trouble</h2>
+<p>There are many different ways to do the things mentioned here.</p>
+<p>Rename a branch:</p>
+<pre class="literal-block">
+$ git branch -m &lt;oldname&gt; &lt;newname&gt;
+</pre>
+<p>Reverting uncommitted changes:</p>
+<pre class="literal-block">
+$ git checkout &lt;file&gt;
+$ git reset --hard
+</pre>
+<p>Delete a branch:</p>
+<pre class="literal-block">
+$ git checkout master
+$ git branch -D &lt;branch&gt;
+</pre>
+<p>If you have pushed:</p>
+<pre class="literal-block">
+$ git push --delete &lt;branch&gt;
+$ git fetch --prune
+$ git branch -D &lt;branch&gt;
+</pre>
+<p>Changing a commit message for the most recent commit:</p>
+<pre class="literal-block">
+$ git commit --amend
+</pre>
+<p>If you have pushed:</p>
+<pre class="literal-block">
+git push --force-with-lease
+</pre>
+<p><em>CAUTION:</em> <tt class="docutils literal"><span class="pre">--force</span></tt> rewrites history</p>
+<p>To change an older commit, you must rebase.</p>
+<p>To delete a commit:</p>
+<pre class="literal-block">
+$ git rebase -i &lt;previous-commit&gt;
+</pre>
+<p>Then delete the line you want to remove.</p>
+<p>If you have pushed:</p>
+<pre class="literal-block">
+$ git revert &lt;commit&gt;
+$ git push
+</pre>
+<p><tt class="docutils literal">revert</tt> creates a new commit that undoes the changes</p>
+<p>If you have committed to the wrong branch:</p>
+<pre class="literal-block">
+$ git branch &lt;new-branch&gt;
+$ git reset --hard &lt;commit&gt;
+</pre>
+<p>If you have pushed:</p>
+<pre class="literal-block">
+$ git revert &lt;commit&gt;
+$ git push
+$ git checkout &lt;correct-branch&gt;
+$ git cherry-pick &lt;commit&gt;
+</pre>
+<p>To squash commits / rewrite history / edit old commits / reword messages:</p>
+<pre class="literal-block">
+$ git rebase -i &lt;commit&gt;
+</pre>
+<p>or for the four most recent commits:</p>
+<pre class="literal-block">
+$ git rebase -i HEAD~4
+</pre>
+<p>Commits are shown oldest to newest.  <tt class="docutils literal">pick</tt> the oldest, and <tt class="docutils literal">squash</tt> the newer commits.  You can also reorder commits.</p>
+<p>If you have pushed:</p>
+<pre class="literal-block">
+$ git push --force-with-lease
+</pre>
+<p>To get the latest changes and rebase onto those changes:</p>
+<pre class="literal-block">
+$ git checkout master
+$ git pull
+$ git checkout &lt;branch&gt;
+$ git rebase master
+</pre>
+<p>If you have issues, you may want to <tt class="docutils literal">rebase <span class="pre">-i</span></tt> (interactive)</p>
+<p>If there are conflicts and you need to manually merge, search for &gt;&gt;&gt;&gt; to find the conflicts.</p>
+<p>Add the fixed files (<tt class="docutils literal">git add &lt;file&gt;</tt>) then <tt class="docutils literal">git rebase <span class="pre">--continue</span></tt>.  It's also possible to <tt class="docutils literal">git rebase <span class="pre">--abort</span></tt></p>
+<p>Reference log shows when the HEAD has been updated in the local repository:</p>
+<pre class="literal-block">
+$ git reflog [--all]
+</pre>
+<p>Stash changes:</p>
+<pre class="literal-block">
+$ git stash
+</pre>
+<p>Files need to be tracked before stashing.  (<tt class="docutils literal">git add .</tt> ) Or you can <tt class="docutils literal"><span class="pre">--include-untracked</span></tt></p>
+<p>Retrieve changes and remove them from the stash:</p>
+<pre class="literal-block">
+$ git stash pop
+</pre>
+<p>Remove from the stash:</p>
+<pre class="literal-block">
+$ git stash drop
+</pre>
+<p>Retrieve changes but keep them in the stash:</p>
+<pre class="literal-block">
+$ git stash apply
+</pre>
+<div class="section" id="small-glossary">
+<h3>Small glossary</h3>
+<p><em>origin:</em> default name for the repository you cloned from</p>
+<p><em>working tree:</em> where you edit the checked out branch (can have multiple)</p>
+<p><em>clean working tree:</em> current files you are editing match HEAD</p>
+<p><em>bare repository:</em> repository without a working tree. Pushing to a non bare repo can cause conflicts</p>
+<p><em>staging:</em> changes to be committed</p>
+<p><em>HEAD:</em> is the commit at the tip of the current branch</p>
+<p><em>revert:</em> creates a new commit to undo changes</p>
+<p><em>reset:</em> changes which commit HEAD is pointing to</p>
+</div>
+<div class="section" id="other-interesting-things">
+<h3>Other interesting things</h3>
+<p><em>patch:</em> Export changes as a patch that can be applied later</p>
+<p><em>.gitignore:</em> List of files that git should ignore</p>
+<p><em>diff:</em> See differences between commits</p>
+<p><em>blame:</em> See who was responsible for changes</p>
+</div>
+<div class="section" id="more-lessons-on-presenting">
+<h3>More lessons on presenting</h3>
+<ul class="simple">
+<li>Even if you've increased the text size, someone will want it larger.</li>
+<li>Even if HDMI works with your laptop on several different projectors, it won't always work on the one you're using &gt;&lt;</li>
+<li>Even if a mini-DP adapter doesn't work on other projectors, it may work on the one you're using</li>
+</ul>
+<p>The discussion afterwards is always my favourite part, because it's a chance to learn from other people.  From this I found out that a colleague never uses <tt class="docutils literal">git pull</tt> but instead <tt class="docutils literal">fetch</tt> then <tt class="docutils literal">rebase</tt> (since pull is a fetch then merge, this avoids the merge). You can find more detail in this excellent blog post: <a class="reference external" href="https://longair.net/blog/2009/04/16/git-fetch-and-merge/">git: fetch and merge, don’t pull | Mark's Blog</a></p>
+<p>Hopefully this is useful!  Someone at the Ruby meetup suggested a potential future talk about different git workflows and branching models, but I don't think I have enough experience in different teams.  Perhaps someone else would like to research and give this talk?</p>
+</div>
+</div>
+<div class="section" id="slides">
+<h2>Slides</h2>
+<p><a class="reference external" href="http://redhat.slides.com/charellecollett/deck-1?token=E29yEW2p">Gitting into Version Control by Charelle Collett</a></p>
+<p><a class="reference external" href="http://redhat.slides.com/charellecollett/deck-1-2?token=ALW0QSBk">Gitting Out Of Trouble! by Charelle Collett</a></p>
+</div>
+
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      Charelle Collett, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="./theme/js/jquery.min.js"></script>
+  <script src="./theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
