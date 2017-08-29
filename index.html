@@ -54,6 +54,26 @@
         <div class="row">
           <div class="col-md-4">
             <p class="post-date">
+              <a class="text-muted" href="/derp.html" title="2017-08-28T00:00:00+10:00">Mon 28 August 2017</a>
+            </p>
+            <p class="post-category">
+              <a href="./category/misc.html">misc</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/derp.html" title="Permalink to Today in "I'm glad I use version control"">Today in &quot;I'm glad I use version control&quot;</a>
+            </h2>
+            <div class="post-content">
+              Today I wrote a simple script to recursively convert reStructuredText files to asciidoc in the current folder: #!/bin/bash for f in `find . -type f -name '*.rst'` do pandoc -f rst -t asciidoc -o "${f%.rst}.adoc" $f rm $f done (Side note: pandoc doesn't ...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
               <a class="text-muted" href="/git-talks.html" title="2017-06-30T00:00:00+10:00">Fri 30 June 2017</a>
             </p>
             <p class="post-category">

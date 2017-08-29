@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+      <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="./authors.html" />
+    <link rel="canonical" href="./derp.html" />
 
-    <title>  charcol's blog &mdash; Authors
+    <title>  charcol's blog &mdash; Today in "I'm glad I use version control"
 </title>
 
 
@@ -21,6 +21,9 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+    <meta name="author" content="charcol">
+  <meta name="tags" contents="">
 </head>
 
 <body>
@@ -46,10 +49,54 @@
     </div>
   </div>
 </header> <!-- /.header -->  <div class="container">
-  <h1>Authors on charcol's blog</h1>
-  <ul class="list-unstyled">
-      <li><a href="./author/charcol.html">charcol</a> (8)</li>
-  </ul>
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/derp.html" title="Permalink to Today in "I'm glad I use version control"">Today in &quot;I'm glad I use version control&quot;</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/derp.html" title="2017-08-28T00:00:00+10:00">Mon 28 August 2017</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="./category/misc.html">misc</a>
+      </li>
+    </ul>
+    <div class="post-content">
+      <p>Today I wrote a simple script to recursively convert reStructuredText files to asciidoc in the current folder:</p>
+<pre class="literal-block">
+#!/bin/bash
+
+for f in `find . -type f -name '*.rst'`
+do
+  pandoc -f rst -t asciidoc -o &quot;${f%.rst}.adoc&quot; $f
+  rm $f
+done
+</pre>
+<p>(Side note: pandoc doesn't preserve table of contents, so it's not a perfect conversion method ¯\_(ツ)_/¯)</p>
+<p>I had done a trial run without the <cite>rm $f</cite> line, and it did what I
+wanted, so I added that line, made a backup of the folder I wanted to
+convert, then run the script again...</p>
+<p>...in the wrong terminal (my home directory) - whoops!  I did wonder
+why this run took longer.  <em>Every</em> rst file was now adoc.</p>
+<p>Luckily, since everything is in version control, the fix was simple.</p>
+<p>In the folder of each project that does use rst:</p>
+<pre class="literal-block">
+$ git reset --hard
+$ git clean -f
+</pre>
+<p>** If there are uncommitted files with wanted changes you'd have to
+make a copy of them first.</p>
+<p>A silly mistake like that could have caused way more damage, and yes,
+I'll try be more careful in the future, but it's easy to make
+mistakes.  Thanks to git, this wasn't an issue at all.</p>
+<p>\( '‿' )/</p>
+
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
   </div>
 <footer class="footer">
   <div class="container">

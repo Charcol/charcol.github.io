@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>charcol's blog</title><link href="char.id.au/" rel="alternate"></link><link href="char.id.au/feeds/atom.xml" rel="self"></link><id>char.id.au/</id><updated>2017-06-30T00:00:00+10:00</updated><entry><title>Do You Want To Git Good?</title><link href="char.id.au/git-talks.html" rel="alternate"></link><published>2017-06-30T00:00:00+10:00</published><author><name>charcol</name></author><id>tag:,2017-06-30:char.id.au/git-talks.html</id><summary type="html">&lt;p&gt;A couple of months ago, the local Ruby meetup group, &lt;a class="reference external" href="https://www.meetup.com/BrisRuby/"&gt;BrisRuby&lt;/a&gt;, put out a call to see if anyone could do an introductory git talk.  It ended up turning into two talks over two months. &amp;quot;Gitting Into Version Control: an introduction to git&amp;quot; and &amp;quot;Gitting Out Of Trouble: what to do when things go wrong&amp;quot;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>charcol's blog</title><link href="char.id.au/" rel="alternate"></link><link href="char.id.au/feeds/atom.xml" rel="self"></link><id>char.id.au/</id><updated>2017-08-28T00:00:00+10:00</updated><entry><title>Today in "I'm glad I use version control"</title><link href="char.id.au/derp.html" rel="alternate"></link><published>2017-08-28T00:00:00+10:00</published><author><name>charcol</name></author><id>tag:,2017-08-28:char.id.au/derp.html</id><summary type="html">&lt;p&gt;Today I wrote a simple script to recursively convert reStructuredText files to asciidoc in the current folder:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#!/bin/bash
+
+for f in `find . -type f -name '*.rst'`
+do
+  pandoc -f rst -t asciidoc -o &amp;quot;${f%.rst}.adoc&amp;quot; $f
+  rm $f
+done
+&lt;/pre&gt;
+&lt;p&gt;(Side note: pandoc doesn't preserve table of contents, so it's not a perfect conversion method ¯\_(ツ)_/¯)&lt;/p&gt;
+&lt;p&gt;I had done a trial run without the &lt;cite&gt;rm $f&lt;/cite&gt; line, and it did what I
+wanted, so I added that line, made a backup of the folder I wanted to
+convert, then run the script again...&lt;/p&gt;
+&lt;p&gt;...in the wrong terminal (my home directory) - whoops!  I did wonder
+why this run took longer.  &lt;em&gt;Every&lt;/em&gt; rst file was now adoc.&lt;/p&gt;
+&lt;p&gt;Luckily, since everything is in version control, the fix was simple.&lt;/p&gt;
+&lt;p&gt;In the folder of each project that does use rst:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git reset --hard
+$ git clean -f
+&lt;/pre&gt;
+&lt;p&gt;** If there are uncommitted files with wanted changes you'd have to
+make a copy of them first.&lt;/p&gt;
+&lt;p&gt;A silly mistake like that could have caused way more damage, and yes,
+I'll try be more careful in the future, but it's easy to make
+mistakes.  Thanks to git, this wasn't an issue at all.&lt;/p&gt;
+&lt;p&gt;\( '‿' )/&lt;/p&gt;
+</summary></entry><entry><title>Do You Want To Git Good?</title><link href="char.id.au/git-talks.html" rel="alternate"></link><published>2017-06-30T00:00:00+10:00</published><author><name>charcol</name></author><id>tag:,2017-06-30:char.id.au/git-talks.html</id><summary type="html">&lt;p&gt;A couple of months ago, the local Ruby meetup group, &lt;a class="reference external" href="https://www.meetup.com/BrisRuby/"&gt;BrisRuby&lt;/a&gt;, put out a call to see if anyone could do an introductory git talk.  It ended up turning into two talks over two months. &amp;quot;Gitting Into Version Control: an introduction to git&amp;quot; and &amp;quot;Gitting Out Of Trouble: what to do when things go wrong&amp;quot;.&lt;/p&gt;
 &lt;p&gt;I've written up the content in this blog post, and the slides are linked below.&lt;/p&gt;
 &lt;div class="section" id="gitting-into-version-control"&gt;
 &lt;h2&gt;Gitting Into Version Control&lt;/h2&gt;
